@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638090624711248692
-    m_Hash: 477147905
+      ticks: 638090630234340954
+    m_Hash: 1792822302
   m_LockFileStatus:
     m_FilePath: C:/Users/danif/Documents/GitHub/BlackJack/BlackJack/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638090624711328467
-    m_Hash: 3275693508
+      ticks: 638090630234340954
+    m_Hash: 734134479
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
