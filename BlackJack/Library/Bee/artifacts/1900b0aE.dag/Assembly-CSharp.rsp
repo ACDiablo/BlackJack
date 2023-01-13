@@ -353,6 +353,7 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Borrar/prueba.cs"
+"Assets/Data/Scripts/Button/ButtonScript.cs"
 "Assets/Data/Scripts/CreateGame.cs"
 "Assets/Data/Scripts/GameManager.cs"
 "Assets/Data/Scripts/MenuManager.cs"
