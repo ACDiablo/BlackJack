@@ -13,9 +13,13 @@ public class TurnoManager : MonoBehaviour
     [Header("Panels")]
     [SerializeField] GameObject betPanel;
     [SerializeField] GameObject askingPanel;
-    public void OnDoAction(bool _ask = false )
+    public void OnDoAction(bool _ask )
     {
         StartCoroutine(AskingCart(_ask));
+    }
+    public void Double()//TO DO:: hacer todo lo de doblar
+    {
+
     }
     public void OnDoAction(int _amount)
     {

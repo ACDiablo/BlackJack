@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] GameObject createGamePanel, rulesPanel;
+    public void Play()
     {
-        
+        createGamePanel.SetActive(true);
+        gameObject.SetActive(false);
     }
-
-    // Update is called once per frame
-    void Update()
+    public void Rules()
     {
-        
+        rulesPanel.SetActive(true);
     }
 }

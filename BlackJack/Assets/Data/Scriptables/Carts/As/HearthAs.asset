@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b213cf562f50fd44bd33b954bd8ebdc, type: 3}
+  m_Name: HearthAs
+  m_EditorClassIdentifier: 
+  type: 1
+  cardSprite: {fileID: -622819643, guid: 44dd416738e33fb4b9e4d552d8bd05de, type: 3}
+  cardName: 
+  vaules: {x: 1, y: 11}

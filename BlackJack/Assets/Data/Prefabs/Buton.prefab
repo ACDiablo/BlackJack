@@ -563,10 +563,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 9126991086165981623}
-  events:
-  - m_PersistentCalls:
-      m_Calls: []
+  events: []
   Clicked: 0
+  reachMaxValue: 0
 --- !u!114 &9126991086608911928
 MonoBehaviour:
   m_ObjectHideFlags: 0

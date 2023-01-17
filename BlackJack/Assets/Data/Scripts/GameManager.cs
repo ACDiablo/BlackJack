@@ -8,16 +8,20 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     TurnoManager turnManager;
     [Header("Game things")]
-    [SerializeField] List<Cart> deck = new List<Cart>();
+    [SerializeField] Deck deck;
     [SerializeField] List<Player> players = new List<Player>();
     [SerializeField] int rounds;
     [SerializeField] int currentRound,currentPlayer,currentCart;
     [SerializeField] int totalBet;
+    [SerializeField] int initMoney;
     public enum GameState { CreatingParty, OnIAturn,OnPlayerTurn,waitingPlayerFinishTurn,WaitingNextPlayer}
     [SerializeField]GameState state;
-    [Header("Waiting for next")]
+    [Header("Panels")]
+    [SerializeField] GameObject menuPanel;
+    [SerializeField] GameObject createGamePanel;
+    [SerializeField] GameObject gamePanel;
     [SerializeField] GameObject waitingForNextPanel;
-    [Header("Waiting finish")]
+    [SerializeField] GameObject onTurnPanel;
     [SerializeField] GameObject waitingFinishTurnPanel;
     [Header("On player turn")]
     [SerializeField] TextMeshProUGUI playerMoney;
@@ -36,11 +40,10 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        /*if(Input.GetMouseButtonDown(0))
         {
-            print("a");
             CreateGame(3, 2);
-        }
+        }*/
     }
     #region StatesMachine
     public void OnDoAction()
@@ -53,6 +56,8 @@ public class GameManager : MonoBehaviour
             case GameState.OnIAturn:
                 break;
             case GameState.OnPlayerTurn:
+                onTurnPanel.SetActive(false);
+                ChangeState(GameState.waitingPlayerFinishTurn);
                 break;
             case GameState.waitingPlayerFinishTurn:
                 currentPlayer++;
@@ -68,6 +73,8 @@ public class GameManager : MonoBehaviour
                 ChangeState(GameState.WaitingNextPlayer);
                 break;
             case GameState.WaitingNextPlayer:
+                waitingForNextPanel.SetActive(false);
+                gamePanel.SetActive(true);
                 ChangeState(GameState.OnPlayerTurn);
                 break;
             default:
@@ -84,6 +91,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.OnPlayerTurn:
                 UpdateUI();
+                onTurnPanel.SetActive(true);
                 turnManager.StartTurn(players[currentPlayer]);
                 break;
             case GameState.waitingPlayerFinishTurn:
@@ -109,8 +117,25 @@ public class GameManager : MonoBehaviour
     {
         if(_ask)
         {
-            players[currentPlayer].carts.Add(deck[currentCart]);
+            Cart newCart = deck.runTimeDeck[currentCart];
+            Player playerNow = players[currentPlayer];
+            playerNow.carts.Add(newCart);
+            newCart.AddValue(playerNow);
             currentCart++;
+            /*switch (newCart.type)
+            {
+                case CartType.Normal:
+                    newCart.AddValue(playerNow);
+                    break;
+                case CartType.As:
+                    new
+                    break;
+                case CartType.Action:
+                    break;
+                default:
+                    break;
+            }*/
+
             //actualizar lo que haga que el player vea sus cartas
             //hacer lo que la carta haga
         }
@@ -121,9 +146,7 @@ public class GameManager : MonoBehaviour
         rounds = _rounds;
         for (int i = 0; i < _players; i++)
         {
-            Player newPlayer = new Player();
-            newPlayer.score = 0;
-            newPlayer.idPlayer = i + 1;
+            Player newPlayer = new Player(initMoney, i+1, false);
             players.Add(newPlayer);
         }
         currentPlayer = 0;currentRound = 0;
@@ -131,12 +154,21 @@ public class GameManager : MonoBehaviour
     }
     void ShuffleDeck()
     {
-        for (int i = 0; i < deck.Count; i++)
+        for (int i = deck.runTimeDeck.Count - 1; i >= 0; i--)
         {
-            Cart a = deck[i];
-            int rand = Random.Range(i, deck.Count - 1);
-            deck[i] = deck[rand];
-            deck[rand] = a;
+            if(deck.runTimeDeck[i]!=null)
+            deck.runTimeDeck.RemoveAt(i);
+        }
+        for (int i = 0; i < deck.deck.Length; i++)
+        {
+            deck.runTimeDeck.Add(deck.deck[i]);
+        }
+        for (int i = 0; i < deck.runTimeDeck.Count; i++)
+        {
+            Cart a = deck.runTimeDeck[i];
+            int rand = Random.Range(i, deck.runTimeDeck.Count - 1);
+            deck.runTimeDeck[i] = deck.runTimeDeck[rand];
+            deck.runTimeDeck[rand] = a;
         }
         currentCart = 0;
     }

@@ -358,7 +358,11 @@
 "Assets/Data/Scripts/GameManager.cs"
 "Assets/Data/Scripts/MenuManager.cs"
 "Assets/Data/Scripts/Player.cs"
+"Assets/Data/Scripts/Scriptables/As.cs"
 "Assets/Data/Scripts/Scriptables/Cart.cs"
+"Assets/Data/Scripts/Scriptables/Deck.cs"
+"Assets/Data/Scripts/Scriptables/EspecialCart.cs"
+"Assets/Data/Scripts/Scriptables/NormalCart.cs"
 "Assets/Data/Scripts/TurnoManager.cs"
 -langversion:9.0
 

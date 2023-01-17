@@ -4,10 +4,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName =("Create/Cart"))]
 public abstract class Cart : ScriptableObject
 {
-   
-    public abstract void AddValue(GameObject target);
+    public CartType type;
+    public Sprite cardSprite;
+    public string cardName;
+
+    public abstract void AddValue(Player target);
 
     public abstract void CardEffect();
     
     
 }
+public enum CartType{ Normal,As ,Action}
