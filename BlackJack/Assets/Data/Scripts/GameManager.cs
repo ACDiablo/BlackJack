@@ -18,9 +18,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] Transform gridCards;
     [SerializeField] GameObject cardPrefab;
     [Header("ThingsToWin")]
-    Player winner;
-    int maxScore;
-    [SerializeField] GameObject showWinnerPanel;
+    Player roundWinner;
+    int roundMaxScore;
+    int totalWinnerFinishMoney;
+    Player finalWinnerPlayer;
+    [SerializeField] GameObject showRoundWinnerPanel;
+    [SerializeField] GameObject showFinalWinnerPanel;
 
     public enum GameState { CreatingParty, OnIAturn,OnPlayerTurn,waitingPlayerFinishTurn,WaitingNextPlayer}
     [SerializeField]GameState state;
@@ -152,24 +155,23 @@ public class GameManager : MonoBehaviour
             Cart newCart = deck.runTimeDeck[currentCart];
             Player playerNow = players[currentPlayer];
             playerNow.carts.Add(newCart);
-            newCart.AddValue(playerNow);
             currentCart++;
-            
-            /*switch (newCart.type)
+
+            switch (newCart.type)
             {
                 case CartType.Normal:
                     newCart.AddValue(playerNow);
                     break;
                 case CartType.As:
-                    new
+                    newCart.AddValue(playerNow);
                     break;
                 case CartType.Action:
+                    
                     break;
                 default:
                     break;
-            /*/
+            }
 
-            //actualizar lo que haga que el player vea sus cartas
             //hacer lo que la carta haga
         }
         UpdateUI(players[currentPlayer]);
@@ -178,7 +180,14 @@ public class GameManager : MonoBehaviour
     {
         ChangeState(GameState.waitingPlayerFinishTurn);
     }
-
+    public void ChangeCartsAction()
+    {
+        List<Cart> currentList = players[currentPlayer].carts;
+        int randomPlayer = Random.Range(0, currentPlayer);
+        players[currentPlayer].carts = players[randomPlayer].carts;
+        players[randomPlayer].carts = currentList;
+        UpdateUI(players[currentPlayer]);
+    }
     #endregion
     #region UpdateBet
     public void UpdateBet(int _bet)
@@ -230,10 +239,10 @@ public class GameManager : MonoBehaviour
             int tempScore = players[i].score;
             if (tempScore < players[i].score2&&players[i].score2<=21)
                 tempScore = players[i].score2;
-            if(tempScore<=21&&tempScore>=maxScore)
+            if(tempScore<=21&&tempScore>=roundMaxScore)
             {
-                maxScore = tempScore;
-                winner = players[i];
+                roundMaxScore = tempScore;
+                roundWinner = players[i];
             }
         }
         for (int i = 0; i < players.Count; i++)
@@ -245,19 +254,32 @@ public class GameManager : MonoBehaviour
                 players[i].carts.RemoveAt(j);
             }
         }
-        winner.money += totalBet;
-        StartCoroutine(ShowroundWinner());
+        if (roundWinner == null)
+            return;
+        roundWinner.money += totalBet;
+        string winnerString = "Ha ganado el jugador "+roundWinner.idPlayer+" con "+roundMaxScore+" puntos. \n +"+totalBet+" euros.";
+        StartCoroutine(ShowroundWinner(winnerString));
     }
-    IEnumerator ShowroundWinner()
+    IEnumerator ShowroundWinner(string _wintext)
     {
-        showWinnerPanel.SetActive(true);
-        TextMeshProUGUI text = showWinnerPanel.GetComponent<WinnerUiPanel>().GetText();
-        string newString = "Ha ganado el jugador "+winner.idPlayer+" con "+maxScore+" puntos. \n +"+totalBet+" euros.";
-        text.text = newString;
+        showRoundWinnerPanel.SetActive(true);
+        TextMeshProUGUI text = showRoundWinnerPanel.GetComponent<WinnerUiPanel>().GetText();
+        text.text = _wintext;
         yield break;
     }
     void FinishGame()
     {
-
+        for (int i = 0; i < players.Count; i++)
+        {
+            if(players[i].money>totalWinnerFinishMoney)
+            {
+                totalWinnerFinishMoney = players[i].money;
+                finalWinnerPlayer = players[i];
+            }
+        }
+        showFinalWinnerPanel.SetActive(true);
+        TextMeshProUGUI text = showFinalWinnerPanel.GetComponent<WinnerUiPanel>().GetText();
+        string newString = "Ha ganado el jugador " + roundWinner.idPlayer + " con un total de "+finalWinnerPlayer.money +" euros.";
+        text.text = newString;
     }
 }

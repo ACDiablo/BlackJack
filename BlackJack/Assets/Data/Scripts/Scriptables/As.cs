@@ -8,7 +8,12 @@ public class As : Cart
     public override void AddValue(Player target)
     {
         target.score += (int)values.x;
-        target.score2 += (int)values.y;
+        if(target.score2+values.y>21)
+        {
+            target.score2 += (int)values.x;
+        }
+        else
+            target.score2 += (int)values.y;
     }
 
     public override void CardEffect()

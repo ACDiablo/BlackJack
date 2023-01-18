@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using TMPro;
 
 
 public class ButtonScript : MonoBehaviour
@@ -20,6 +21,9 @@ public class ButtonScript : MonoBehaviour
 
     [SerializeField]
     private bool reachMaxValue;
+    [SerializeField] TextMeshProUGUI[] texts;
+    TextMeshProUGUI currentText;
+    [SerializeField] Color normalColor,selectedColor;
 
     private void Start()
     {
@@ -83,6 +87,12 @@ public class ButtonScript : MonoBehaviour
         slider.value = 0;
         slider.gameObject.SetActive(false);
         yield break;
+    }
+    void ChangeCurrentText(int _index)
+    {
+        currentText.color = normalColor;
+        currentText = texts[_index];
+        currentText.color = selectedColor;
     }
 
     void CountEvent(float value)

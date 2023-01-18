@@ -27,4 +27,8 @@ public class WinnerUiPanel : MonoBehaviour
         gameObject.SetActive(false);
         GameManager.instance.ChangeState(GameManager.GameState.WaitingNextPlayer);
     }
+    public void FinalWin()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+    }
 }
