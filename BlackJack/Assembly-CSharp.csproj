@@ -62,6 +62,7 @@
     <Compile Include="Assets\Data\Scripts\Scriptables\NormalCart.cs" />
     <Compile Include="Assets\Data\Scripts\Scriptables\As.cs" />
     <Compile Include="Assets\Data\Scripts\CreateGame.cs" />
+    <Compile Include="Assets\Data\Scripts\WinnerUiPanel.cs" />
     <Compile Include="Assets\Data\Scripts\TurnoManager.cs" />
     <Compile Include="Assets\Data\Scripts\Button\ButtonScript.cs" />
     <Compile Include="Assets\Borrar\prueba.cs" />

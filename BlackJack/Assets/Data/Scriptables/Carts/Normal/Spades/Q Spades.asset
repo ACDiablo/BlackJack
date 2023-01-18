@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eafc5943c94937b499ab3c7379285d08, type: 3}
   m_Name: Q Spades
   m_EditorClassIdentifier: 
-  cardValue: 0
-  cardSprite: {fileID: 0}
+  type: 0
+  cardSprite: {fileID: 942558682, guid: 44dd416738e33fb4b9e4d552d8bd05de, type: 3}
   cardName: 
+  cardValue: 10

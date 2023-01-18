@@ -15,4 +15,4 @@ MonoBehaviour:
   type: 1
   cardSprite: {fileID: 1124047374, guid: 44dd416738e33fb4b9e4d552d8bd05de, type: 3}
   cardName: 
-  vaules: {x: 1, y: 11}
+  values: {x: 1, y: 11}

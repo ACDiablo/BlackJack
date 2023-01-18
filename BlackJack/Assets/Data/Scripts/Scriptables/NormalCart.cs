@@ -6,9 +6,6 @@ using UnityEngine;
 public class NormalCart : Cart
 {
     public int cardValue;
-    
-
-
     public override void AddValue(Player target)
     {
         target.score += cardValue;
@@ -18,5 +15,15 @@ public class NormalCart : Cart
     public override void CardEffect()
     {
         //No effect for normal card
+    }
+
+    public override int GetCardValue()
+    {
+        return cardValue;
+    }
+
+    public override Vector2 GetCardValues()
+    {
+        throw new System.NotImplementedException();
     }
 }

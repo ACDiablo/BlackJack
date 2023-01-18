@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class ButtonScript : MonoBehaviour
 {
 
+
     [SerializeField]
     private Slider slider;
 
@@ -22,7 +23,7 @@ public class ButtonScript : MonoBehaviour
 
     private void Start()
     {
-        
+
         slider.maxValue = events.Count;
         slider.gameObject.SetActive(false);
 
@@ -35,19 +36,19 @@ public class ButtonScript : MonoBehaviour
     public void isNotClicked()
     {
         Clicked = false;
-        
+
     }
 
-    
+
     private void Update()
     {
-        
+
         if (Clicked)
         {
             if (slider.value <= slider.maxValue && !reachMaxValue)
             {
-                slider.value += Time.deltaTime *slider.maxValue;
-                
+                slider.value += Time.deltaTime * slider.maxValue;
+
             }
             else
             {
@@ -65,18 +66,18 @@ public class ButtonScript : MonoBehaviour
         {
             reachMaxValue = true;
         }
-        
+
         if (!Clicked && slider.value != 0)
         {
             StartCoroutine(eventWork());
         }
-   
+
     }
 
     IEnumerator eventWork()
     {
 
-        int eventWhoWork = (int)Mathf.Round(slider.value / slider.maxValue);
+        int eventWhoWork = (int)((slider.value / slider.maxValue) * slider.maxValue);
         //print(eventWhoWork);
         CountEvent(eventWhoWork);
         slider.value = 0;
@@ -94,17 +95,17 @@ public class ButtonScript : MonoBehaviour
                 break;
             }
         }
-    } 
+    }
 
 
     public void DoA()
     {
         print("a");
-    } 
+    }
     public void DoB()
     {
         print("b");
-    } 
-    
-    
+    }
+
+
 }

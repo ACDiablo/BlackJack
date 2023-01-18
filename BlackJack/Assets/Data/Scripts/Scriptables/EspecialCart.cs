@@ -13,4 +13,14 @@ public class EspecialCart : Cart
     {
         //TO do Program all variants
     }
+
+    public override int GetCardValue()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override Vector2 GetCardValues()
+    {
+        throw new System.NotImplementedException();
+    }
 }

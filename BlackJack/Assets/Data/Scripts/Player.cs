@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
-public class Player : MonoBehaviour
+public class Player 
 {
     public List<Cart> carts;
     public int score;
@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
         money = _money;
         idPlayer = _idPlayer;
         isIA = _isIA;
+        carts = new List<Cart>();
     }
 
 

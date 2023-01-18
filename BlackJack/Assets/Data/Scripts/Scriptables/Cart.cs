@@ -9,6 +9,8 @@ public abstract class Cart : ScriptableObject
     public string cardName;
 
     public abstract void AddValue(Player target);
+    public abstract int GetCardValue();
+    public abstract Vector2 GetCardValues();
 
     public abstract void CardEffect();
     

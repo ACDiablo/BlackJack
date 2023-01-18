@@ -364,6 +364,7 @@
 "Assets/Data/Scripts/Scriptables/EspecialCart.cs"
 "Assets/Data/Scripts/Scriptables/NormalCart.cs"
 "Assets/Data/Scripts/TurnoManager.cs"
+"Assets/Data/Scripts/WinnerUiPanel.cs"
 -langversion:9.0
 
 /deterministic

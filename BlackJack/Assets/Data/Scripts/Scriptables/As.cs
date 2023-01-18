@@ -15,4 +15,14 @@ public class As : Cart
     {
         throw new System.NotImplementedException();
     }
+
+    public override int GetCardValue()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override Vector2 GetCardValues()
+    {
+        return values;
+    }
 }
